@@ -1,0 +1,6 @@
+Django==1.4
+distribute==0.6.24
+psycopg2==2.4.5
+dj-database-url
+South
+PIL
