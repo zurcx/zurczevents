@@ -2,6 +2,8 @@ import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
 
+ALOWED_HOSTS = ['*']
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
