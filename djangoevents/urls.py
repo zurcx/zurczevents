@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
+from core.views import HomeView
 
 from django.contrib import admin
 admin.autodiscover()
@@ -22,7 +23,8 @@ urlpatterns = patterns('',
         {'template_name': 'login.html'}, name='login'),
     url(r'^sair/$', "django.contrib.auth.views.logout",
         {'next_page': '/'}, name='logout'),
-    url(r"^$", "core.views.home", name="home"),
+    # url(r"^$", "core.views.home", name="home"),
+    url(r"^$", HomeView.as_view(), name="home"),
     url(r"^fale-conosco/$", "core.views.contact", name="contact"),
 
     # url(r'', include('social_auth.urls')),

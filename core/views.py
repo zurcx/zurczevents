@@ -2,15 +2,19 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import View, TemplateView
 
 from forms import ContactForm
 
-def home(request):
-    context = {
-        'nome': u'Gileno',
-        'email': u'gascf.cin@gmail.com',
-    }
-    return render(request, 'home.html', context)
+class HomeView(TemplateView):
+
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['is_admin'] = self.request.user.is_staff
+        return context
+
 
 def contact(request):
     context = {}
@@ -19,7 +23,7 @@ def contact(request):
         if form.is_valid():
             form.send_mail()
             context['success'] = True
-    else:        
+    else:
         form = ContactForm()
     context['form'] = form
     return render(request, 'contact.html', context)

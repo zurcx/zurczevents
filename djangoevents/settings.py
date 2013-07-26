@@ -44,6 +44,9 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
@@ -51,7 +54,7 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = 'http://zurczevents.s3.amazonaws.com/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -61,7 +64,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static_files')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://zurczevents.s3.amazonaws.com/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -150,7 +153,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     "south",
-    # "social_auth",
+    "social_auth",
     "gunicorn",
 
     "core",
@@ -195,6 +198,18 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'email@gmail.com'
 EMAIL_HOST_PASSWORD = 'suasenha'
 EMAIL_PORT = 587
+
+#amazon
+AWS_ACCESS_KEY_ID = 'AKIAI7KB6FA4JZQBGVTQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'zurczevents'
+
+# see http://developer.yahoo.com/performance/rules.html#expires
+AWS_HEADERS = {
+    'x-amz-acl': 'public-read',
+    'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
+    'Cache-Control': 'max-age=86400',
+}
 
 try:
     from settings_local import *
