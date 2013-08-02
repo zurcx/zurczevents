@@ -13,7 +13,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-ATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'zurczevents',                      # Or path to database file if using sqlite3.
