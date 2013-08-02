@@ -8,15 +8,26 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    (u'Gileno Filho', 'gascf.cin@gmail.com'),
+    (u'Luiz Fabio', 'luizfabiodacruz@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
-import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost')
+ATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'zurczevents',                      # Or path to database file if using sqlite3.
+        'USER': 'zurczevents',                      # Not used with sqlite3.
+        'PASSWORD': 'zurczevents123',                  # Not used with sqlite3.
+        'HOST': 'zurczevents.c2hsprbeezs9.us-west-2.rds.amazonaws.com',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '3306',                      # Set to empty string for default. Not used with sqlite3.
+    }
 }
+
+# import dj_database_url
+# DATABASES = {
+#     'default': dj_database_url.config(default='postgres://localhost')
+# }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -25,7 +36,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Recife'
+TIME_ZONE = 'America/Sao_Paulo'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -155,6 +166,7 @@ INSTALLED_APPS = (
     "south",
     "social_auth",
     "gunicorn",
+    "storages",
 
     "core",
     "events",
